@@ -25,3 +25,20 @@ const result = {...interview, interviewer}
 
   return result;
 }
+
+export function getInterviewersForDay(state, day){
+  const newArray = state.days.filter(function (item) {
+    return item.name === day;
+  });
+
+  if (newArray.length === 0) {
+    return [];
+  }
+  const interviewersArray = newArray[0].appointments.map((appointment) => {
+    return state.appointments[appointment];
+  });
+
+  return interviewersArray;
+
+
+}
