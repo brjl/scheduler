@@ -23,10 +23,13 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
+
+    const spots = updateSpots(state.day, state.days, appointments);
     return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
       setState({
         ...state,
         appointments,
+        spots,
       });
     });
   }
@@ -41,16 +44,46 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-
+    const spots = updateSpots(state.day, state.days, appointments);
     return axios.delete(`/api/appointments/${id}`).then((res) => {
       setState({
         ...state,
         appointments,
+        spots,
       });
     });
   };
 
-  //render schedule data via api call
+  function spotsAvailable(dayObj, appointments) {
+    let count = 0;
+    for (const id of dayObj.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  function updateSpots(dayName, days, appointments) {
+    //find the day object
+    //get the appointments
+    //count the spots not in use
+    //make a new array with the spots
+
+    const day = days.find((item) => item.name === dayName);
+    const interviewSpots = spotsAvailable(day, appointments);
+    const dayArray = days.map((item) => {
+      if (item.name === dayName) {
+        item.spots = interviewSpots;
+        return { ...item, spots: interviewSpots };
+      }
+      return item;
+    });
+    return dayArray;
+  }
+
+  //render schedule data
 
   useEffect(() => {
     Promise.all([
