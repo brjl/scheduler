@@ -34,8 +34,8 @@ export function getInterviewersForDay(state, day){
   if (newArray.length === 0) {
     return [];
   }
-  const interviewersArray = newArray[0].appointments.map((appointment) => {
-    return state.appointments[appointment];
+  const interviewersArray = newArray[0].interviewers.map((appointment) => {
+    return state.interviewers[appointment];
   });
 
   return interviewersArray;

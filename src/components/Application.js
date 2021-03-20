@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment/";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
+import axios from "axios";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "../helpers/selectors";
 import "components/Application.scss";
-
-const axios = require("axios");
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -15,17 +18,43 @@ export default function Application(props) {
   });
   const setDay = (day) => setState({ ...state, day });
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    return axios
+      .put(`/api/appointments/${id}`, appointment)
+      .then((res) => {
+        setState({
+          ...state,
+          appointments,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   console.log("state.day:", state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
   const appointments = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    console.log("interview get:", interview )
+    console.log("interview get:", interview);
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
