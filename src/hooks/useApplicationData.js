@@ -83,8 +83,6 @@ export default function useApplicationData() {
     return dayArray;
   }
 
-  //render schedule data
-
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
