@@ -30,7 +30,7 @@ export function getInterviewersForDay(state, day){
   const newArray = state.days.filter(function (item) {
     return item.name === day;
   });
-  console.log("newArray:", newArray)
+  //console.log("newArray:", newArray)
 
   if (newArray.length === 0) {
     return [];
@@ -39,7 +39,7 @@ export function getInterviewersForDay(state, day){
     return state.interviewers[appointment];
   });
 
-  console.log("interviewersArray:", interviewersArray)
+  //console.log("interviewersArray:", interviewersArray)
 
   return interviewersArray;
 

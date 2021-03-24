@@ -12,7 +12,7 @@ export default function useApplicationData() {
   const setDay = (day) => setState({ ...state, day });
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    //console.log(id, interview);
 
     const appointment = {
       ...state.appointments[id],
@@ -89,7 +89,7 @@ export default function useApplicationData() {
       axios.get("/api/appointments"),
       axios.get("/api/interviewers"),
     ]).then((all) => {
-      console.log({ days: all[0], appointments: all[1], interviewers: all[2] });
+      //console.log({ days: all[0], appointments: all[1], interviewers: all[2] });
       setState((prev) => ({
         ...prev,
         days: all[0].data,
