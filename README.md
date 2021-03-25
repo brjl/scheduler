@@ -1,25 +1,19 @@
 # Interview Scheduler
 A React based interview scheduler. Users can schedule up to 5 interviews per day, choose their interviewer, and create, edit, or delete appointments. Scheduler makes API requests with axios to load and persist interview data. Testing is accomplished using Storybook, Jest, and Cypress. 
 
+![main site](https://github.com/brjl/scheduler/blob/master/docs/main-site.png)
+
 ## Book an interview
 
-![book interview]()
-
-## Edit an interview
-
-![edit interview]()
-
-## Cancel an interview
-
-![cancel interview]()
+![book interview](https://github.com/brjl/scheduler/blob/master/docs/book-interview.png)
 
 ## User feedback
 
-![saving feedback]()
+![saving feedback](https://github.com/brjl/scheduler/blob/master/docs/user-feedback.jpg)
 
 ## Confirm destructive actions
 
-![confirm delete]()
+![confirm delete](https://github.com/brjl/scheduler/blob/master/docs/delete-confirmation.png)
 
 ## Dependencies
 
