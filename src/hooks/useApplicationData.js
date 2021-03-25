@@ -12,8 +12,6 @@ export default function useApplicationData() {
   const setDay = (day) => setState({ ...state, day });
 
   function bookInterview(id, interview) {
-    //console.log(id, interview);
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -66,11 +64,6 @@ export default function useApplicationData() {
   }
 
   function updateSpots(dayName, days, appointments) {
-    //find the day object
-    //get the appointments
-    //count the spots not in use
-    //make a new array with the spots
-
     const day = days.find((item) => item.name === dayName);
     const interviewSpots = spotsAvailable(day, appointments);
     const dayArray = days.map((item) => {
