@@ -185,7 +185,8 @@ storiesOf("Appointment", module)
       <Appointment id={1} time="12pm" />
       <Appointment id="last" time="1pm" />
     </Fragment>
-  )).add("Appointment Booked", () => (
+  ))
+  .add("Appointment Booked", () => (
     <Fragment>
       <Appointment
         id={1}
@@ -194,4 +195,4 @@ storiesOf("Appointment", module)
       />
       <Appointment id="last" time="1pm" />
     </Fragment>
-  ))
+  ));

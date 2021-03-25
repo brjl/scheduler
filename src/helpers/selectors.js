@@ -18,19 +18,18 @@ export function getInterview(state, interview) {
     return null;
   }
 
-const id = interview.interviewer;
-const interviewer = state.interviewers[id];
+  const id = interview.interviewer;
+  const interviewer = state.interviewers[id];
 
-const result = {...interview, interviewer}
+  const result = { ...interview, interviewer };
 
   return result;
 }
 
-export function getInterviewersForDay(state, day){
+export function getInterviewersForDay(state, day) {
   const newArray = state.days.filter(function (item) {
     return item.name === day;
   });
-  //console.log("newArray:", newArray)
 
   if (newArray.length === 0) {
     return [];
@@ -40,9 +39,5 @@ export function getInterviewersForDay(state, day){
     return state.interviewers[appointment];
   });
 
-  //console.log("interviewersArray:", interviewersArray)
-
   return interviewersArray;
-
-
 }

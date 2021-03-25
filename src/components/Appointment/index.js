@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
@@ -6,7 +6,6 @@ import Form from "components/Appointment/Form";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
 import useVisualMode from "../../hooks/useVisualMode";
-//import bookInterview from "components/Application";
 import Status from "components/Appointment/Status";
 import "components/Appointment/styles.scss";
 
@@ -30,8 +29,6 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
-    console.log("interview:", interview);
-    console.log("props.id:", props.id);
 
     transition(SAVING);
     props
@@ -50,7 +47,7 @@ export default function Appointment(props) {
   };
 
   return (
-    <article className="appointment" data-testid="appointment" >
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
